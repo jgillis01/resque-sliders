@@ -1,0 +1,6 @@
+"metrics_snapshot_worker":
+  max_workers: 2
+automerchandise_products: 
+  max_workers: 1
+'dashboard_charts_cache_sweeper,employee_metrics_cache_sweeper,weekly_client_metrics_creator,unit_catalog_sync_worker':
+  max_workers: 1

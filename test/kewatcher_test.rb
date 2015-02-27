@@ -7,7 +7,7 @@ context "kewatcher" do
     pidfile = Tempfile.new('pidfile')
     @options = {
       :pidfile => pidfile.path,
-      :config => '127.0.0.1:9736'
+      :config => '127.0.0.1:6379'
     }
     @kewatcher = Resque::Plugins::ResqueSliders::KEWatcher.new(@options)
   end
@@ -26,14 +26,14 @@ context "kewatcher" do
   end
 
   test "kewatcher runs" do
-    `(bundle exec kewatcher --config #{@options[:config]}) >/dev/null 2>&1 & sleep 3`
+    `(bundle exec bin/kewatcher --config #{@options[:config]}) >/dev/null 2>&1 & sleep 3`
     assert @kewatcher.running?
   end
 
   test "kewatcher wont run twice" do
-    `(bundle exec kewatcher --config #{@options[:config]}) >/dev/null 2>&1 &`
+    `(bundle exec bin/kewatcher --config #{@options[:config]}) >/dev/null 2>&1 &`
     sleep 3
-    output = `bundle exec kewatcher --config #{@options[:config]}`
+    output = `bundle exec bin/kewatcher --config #{@options[:config]}`
     assert_match %r{Already running}, output
   end
 

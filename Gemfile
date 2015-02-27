@@ -12,4 +12,7 @@ end
 
 group :test do
   gem 'minitest'
+  gem 'rspec'
+  gem 'pry'
+  gem 'awesome_print'
 end
